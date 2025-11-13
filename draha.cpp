@@ -2,6 +2,9 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
+#include <cstdlib>
+#include <string>
+#include <functional>
 
 // zde definovat funkce/třídy/struktury potřebné pro vypsání dráhy
 // přidat potřebné knihovny pomocí #include
@@ -9,17 +12,18 @@
 void clearConsole()
 {
 #if defined(_WIN32) || defined(_WIN64)
-    std::system("cls");
+    ::system("cls");
 #else
     std::cout << "\033[2J\033[H" << std::flush;
 #endif
 }
 
-void bwl_koule()
+void bwl_koule(int iterations)
 {
     int prubeh = 0;
+    int count = 0;
 
-    while (true)
+    while (iterations < 0 || count < iterations)
     {
         clearConsole();
 
@@ -35,8 +39,9 @@ void bwl_koule()
 
         std::cout << std::string(pos, ' ') << "0" << std::endl;
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(75));
+        std::this_thread::sleep_for(std::chrono::duration<int, std::milli>(75));
 
         prubeh = (prubeh + 1) % 15;
+        ++count;
     }
 }
