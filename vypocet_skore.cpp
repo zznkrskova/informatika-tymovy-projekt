@@ -1,46 +1,51 @@
 #include <vector>
 #include <iostream>
+#include "vypocet_skore.h"
 
-int vypocet_skore(const std::vector<int>& hody) {
-   int celkove_skore = 0;
-   int frame = 0;
-   int pocet_hodu = 0;
+int vypocetSkore(const std::vector<int>& hody) {
+    int celkoveSkore = 0;
+    int frame = 0;
+    int pocetHodu = 0;
 
-    auto bonus_za_strike = [&](){
-        if(pocet_hodu + 2 < hody.size()){
-            return hody[pocet_hodu + 1] + hody[pocet_hodu + 2];
+    auto bonusZaStrike = [&]() {
+        if (pocetHodu + 2 < hody.size()) {
+            return hody[pocetHodu + 1] + hody[pocetHodu + 2];
         }
-        if(pocet_hodu + 1 < hody.size()){
-            return hody[pocet_hodu + 1];
-        }
-        return 0;
-    };
-
-    auto bonus_za_spare = [&](){
-        if(pocet_hodu + 2 < hody.size()){
-            return hody[pocet_hodu + 2];
+        if (pocetHodu + 1 < hody.size()) {
+            return hody[pocetHodu + 1];
         }
         return 0;
     };
 
-   while (frame < 10 && pocet_hodu < hody.size()){
-        if(hody[pocet_hodu] ==10){
-            celkove_skore= celkove_skore + 10 + bonus_za_strike();
-            pocet_hodu += 1;
+    auto bonusZaSpare = [&](){
+        if (pocetHodu + 2 < hody.size()) {
+            return hody[pocetHodu + 2];
         }
-        else if(pocet_hodu + 1 < hody.size()) { 
-            int soucet_framu = hody[pocet_hodu] + hody[pocet_hodu + 1];
+        return 0;
+    };
 
-            if(soucet_framu ==10){
-            celkove_skore= celkove_skore + 10 + bonus_za_spare();
-            pocet_hodu += 2;
+    while (frame < 10 && pocetHodu < hody.size()) {
+        if (hody[pocetHodu] == 10) {
+            celkoveSkore= celkoveSkore + 10 + bonusZaStrike();
+            pocetHodu += 1;
+        }
+        else if (pocetHodu + 1 < hody.size()) { 
+            int soucet_framu = hody[pocetHodu] + hody[pocetHodu + 1];
+
+            if (soucet_framu == 10) {
+                celkoveSkore = celkoveSkore + 10 + bonusZaSpare();
+                pocetHodu += 2;
+            }
+            else {
+                celkoveSkore += hody[pocetHodu];
+                pocetHodu += 2;
             }
         }
         else {
-            celkove_skore= celkove_skore + hody[pocet_hodu];
-            pocet_hodu += 1;
+            celkoveSkore = celkoveSkore + hody[pocetHodu];
+            pocetHodu += 1;
         }
         frame++;
     }
-    return celkove_skore;
+    return celkoveSkore;
 }
