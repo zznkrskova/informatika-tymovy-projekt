@@ -4,3 +4,4 @@
 
 void clearConsole();
 void bwl_koule(int iterations = -1);
+void vypisDrahu();
