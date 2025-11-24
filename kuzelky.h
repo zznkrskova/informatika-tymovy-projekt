@@ -2,5 +2,5 @@
 
 extern int Master;
 void vypisZlabky();
-void vypisDrahu();
+void vypisDrahu(int pozice);
 void skore();
