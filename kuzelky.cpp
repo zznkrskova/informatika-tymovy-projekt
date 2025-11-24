@@ -490,8 +490,61 @@ void vypisDrahu2(int pozice2, int pozice){
             break;
 
         case 6:
+            if (pozice == 7 || pozice == 8 || pozice == 9 || pozice == 10 || pozice == 11 || pozice == 12 || pozice == 13) {
+                draha2 = vypisDrahu(7); // spare
 
+            }
 
+            else {
+                draha2 = vypisDrahu(6);
+            }
+            break;
+
+        case 7:
+            draha2 = vypisDrahu(7); // strike
+            break;
+
+        case 8:
+            if (pozice == 0 || pozice == 14 || pozice == 8 || pozice == 9 || pozice == 10 || pozice == 11 || pozice == 12 || pozice == 13) {
+                draha2 = vypisDrahu(8);
+            }
+
+            else {
+                draha2 = vypisDrahu(7); // spare
+            }
+            break;
+
+        case 9:
+            if (pozice == 1){
+                draha2 = vypisDrahu2(1, 9);
+            }
+
+            else if (pozice == 2 || pozice == 3)
+            {   draha2 = {
+                    "*************",
+                    "||~~~~~~~~~||",
+                    "||         ||",
+                    "||         ||",
+                    "||   8     ||",
+                    "||    8    ||",
+                };}
+
+            else if (pozice == 4 || pozice == 5)
+            {
+                draha2 = vypisDrahu2(4,9);
+            }
+
+            else if (pozice == 6 || pozice == 7)
+            {
+                draha2 = vypisDrahu(7); // spare
+            }
+
+            else {
+                draha2 = vypisDrahu(9);
+            }
+            break;
+
+        case 10:
 
     }
 
