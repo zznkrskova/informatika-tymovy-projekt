@@ -15,7 +15,7 @@ int vypocetSkore(const std::vector<double>& hody) {
             break;
         }
 
-        // --- 1. Zpracování STRIKE (10 na první hod) ---
+        // 1. Zpracování STRIKE (10 na první hod)
         if (hody[indexHodu] == 10) {
             // Skóre je 10 + součet následujících dvou hodů (bonus)
 
@@ -33,7 +33,7 @@ int vypocetSkore(const std::vector<double>& hody) {
             indexHodu += 1; // Strike spotřebuje POUZE 1 hod
         }
 
-        // --- 2. Zpracování SPARE / OPEN FRAME ---
+        //  2. Zpracování SPARE / OPEN FRAME 
         // Potřebujeme alespoň dva hody k určení framu.
         else if (indexHodu + 1 < hody.size()) {
             int soucet = hody[indexHodu] + hody[indexHodu + 1];
@@ -59,7 +59,7 @@ int vypocetSkore(const std::vector<double>& hody) {
             }
         }
 
-        // --- 3. NEÚPLNÝ FRAME ---
+        // 3. NEÚPLNÝ FRAME
         else {
             // Započítáme jediný zbývající hod a ukončíme smyčku (neúplná hra)
             celkoveSkore += hody[indexHodu];
